@@ -1,0 +1,89 @@
+==================================================
+ SECURITY LOG ANALYSIS REPORT
+ Generated : 2026-03-06 00:23:30
+ Analyst   : Mayur Prashant Nayak
+==================================================
+
+OVERVIEW
+  Log file analyzed : data/sample_auth.log
+  Failed logins     : 154
+  Unique source IPs : 6
+  Unique usernames  : 7
+  Log time range    : 2026-06-15 08:01:32 → 2026-06-15 11:11:16
+
+──────────────────────────────────────────────────
+BRUTE-FORCE DETECTIONS  [3 IP(s) flagged]
+
+  🔴  192.168.56.10
+      Severity         : CRITICAL
+      Total attempts   : 98
+      Max in 10 min    : 83
+      Top target user  : deploy
+      Unique usernames : 7
+      First seen       : 2026-06-15 09:00:09
+      Last seen        : 2026-06-15 09:11:57
+      Attack duration  : 11.8 minutes
+
+  🟠  10.0.0.55
+      Severity         : HIGH
+      Total attempts   : 38
+      Max in 10 min    : 38
+      Top target user  : admin
+      Unique usernames : 3
+      First seen       : 2026-06-15 10:00:19
+      Last seen        : 2026-06-15 10:07:19
+      Attack duration  : 7.0 minutes
+
+  🟡  172.16.0.22
+      Severity         : MEDIUM
+      Total attempts   : 12
+      Max in 10 min    : 11
+      Top target user  : root
+      Unique usernames : 2
+      First seen       : 2026-06-15 11:00:48
+      Last seen        : 2026-06-15 11:11:16
+      Attack duration  : 10.5 minutes
+
+
+──────────────────────────────────────────────────
+TOP TARGETED USERNAMES
+
+  root                     30  ██████████████████████████████
+  ubuntu                   27  ███████████████████████████
+  admin                    27  ███████████████████████████
+  deploy                   23  ███████████████████████
+  postgres                 17  █████████████████
+  git                      17  █████████████████
+  mayur                    13  █████████████
+
+──────────────────────────────────────────────────
+TOP ATTACKING SOURCE IPs
+
+  192.168.56.10            98  ██████████████████████████████ ← FLAGGED
+  10.0.0.55                38  ███████████ ← FLAGGED
+  172.16.0.22              12  ███ ← FLAGGED
+  192.168.1.105             3  
+  10.10.0.50                2  
+  192.168.1.101             1  
+
+──────────────────────────────────────────────────
+RECOMMENDED ACTIONS
+
+  IMMEDIATE (within 1 hour):
+    • Block IP 192.168.56.10 at the firewall
+    • Block IP 10.0.0.55 at the firewall
+
+  SHORT-TERM (within 24 hours):
+    • Review all accounts targeted by flagged IPs for unauthorized access
+    • Check for any successful logins from flagged IPs (Event ID 4624)
+    • Reset passwords for all targeted accounts as a precaution
+
+  LONG-TERM:
+    • Implement account lockout after 5 failed attempts
+    • Enforce MFA on all accounts with SSH access
+    • Consider moving SSH to a non-standard port (security through obscurity)
+    • Deploy fail2ban to auto-block IPs after threshold is hit
+
+==================================================
+ END OF REPORT
+==================================================

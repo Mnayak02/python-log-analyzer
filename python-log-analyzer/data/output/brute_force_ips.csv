@@ -1,0 +1,4 @@
+source_ip,total_failed,max_in_10min,unique_usernames,top_username,first_seen,last_seen,duration_minutes,severity
+192.168.56.10,98,83,7,deploy,2026-06-15 09:00:09,2026-06-15 09:11:57,11.8,CRITICAL
+10.0.0.55,38,38,3,admin,2026-06-15 10:00:19,2026-06-15 10:07:19,7.0,HIGH
+172.16.0.22,12,11,2,root,2026-06-15 11:00:48,2026-06-15 11:11:16,10.5,MEDIUM
